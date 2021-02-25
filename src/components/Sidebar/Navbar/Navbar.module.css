@@ -1,0 +1,27 @@
+.navbar{
+    border-right: 1px solid rgba(var(--primary-color), 0.3);
+    border-bottom: 1px solid rgba(var(--primary-color), 0.3);
+    padding-bottom: 20px;
+}
+
+.navbar h5{
+    font-weight: 400;
+    text-transform: uppercase;
+    margin-top: 0 !important;
+    padding-top: 20px;
+}
+
+.menuLink {
+    display: block;
+    cursor: pointer;
+    padding: 13px 10px;
+    text-decoration: none;
+    font-weight: bold;
+    color: #000;
+    font-size: 0.9em;
+}
+
+.menuLink:hover,
+.activeLink {
+    background: rgba(var(--primary-color), 0.2);
+}

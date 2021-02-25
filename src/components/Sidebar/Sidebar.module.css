@@ -1,0 +1,17 @@
+.sidebar{
+    grid-area: s;
+}
+
+.rars{
+    text-align: center;
+    padding: 20px 0;
+    border-bottom: 1px solid rgba(var(--primary-color), 0.4);
+    font-size: 0.9em
+;
+}
+
+.rars p{
+    margin: 10px 0;
+    font-size: 3em;
+    color: rgb(var(--primary-color));
+}

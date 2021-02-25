@@ -1,0 +1,24 @@
+.article {
+    font-size: 0.9em;
+}
+
+.link{
+    color: black;
+    cursor: pointer;
+    text-decoration: none;
+    display: block;
+    padding: 10px;
+}
+
+.link:hover{
+    background: rgba(var(--primary-color), 0.2);
+}
+
+.viewedNum{
+    margin-left: 10px;
+}
+
+.popularArticles{
+    border-right: 1px solid rgba(var(--primary-color), 0.3);
+    padding: 20px 0;
+}

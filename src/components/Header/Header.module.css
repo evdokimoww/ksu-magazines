@@ -1,0 +1,51 @@
+.header{
+    grid-area: h;
+    border-bottom: 1px solid #eaeaea;
+    padding: 10px 0;
+}
+
+.headerWrapper {
+    display: grid;
+    grid-template-columns: 3fr 6fr 3fr;
+    grid-template-areas: "lang name search";
+    grid-gap: 10px;
+}
+
+.siteTitle{
+    grid-area: name;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.search{
+    padding: 0 20px;
+    grid-area: search;
+    position: relative;
+}
+
+.search form{
+    position: absolute;
+    top: 50%;
+    margin-top: -1em;
+}
+
+.search input{
+    display: block;
+    width: 100%;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #71748d;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #d2d2e4;
+    border-radius: 2px;
+    padding: .375rem .75rem;
+}
+
+.mainTitle{
+    text-transform: uppercase;
+}
+
+.mainTitle{
+    color: white;
+}
