@@ -3,7 +3,7 @@ import {compose} from "redux";
 import {connect} from "react-redux";
 import {withRouter} from "react-router-dom";
 import Article from "../../Magazine/Article";
-import s from "../../Index/Page.module.css";
+import s from "../../Pages/Page.module.css";
 
 class SearchPage extends React.Component{
     render() {

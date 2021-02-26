@@ -22,3 +22,8 @@
     line-height: 1.5;
     text-align: justify;
 }
+
+.downloaded {
+    font-size: 0.9em;
+    padding-left: 20px;
+}

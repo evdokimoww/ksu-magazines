@@ -5,38 +5,34 @@ import {Route, Switch} from "react-router-dom";
 import FooterContainer from "./components/Footer/FooterContainer";
 import Sidebar from "./components/Sidebar/Sidebar";
 import classNames from "classnames"
-import {setDomainName} from "./redux/general-reducer";
-import {compose} from "redux";
-import {connect} from "react-redux";
+import {LanguageProvider} from "./components/Language/LanguageContext";
 
-const PageContainer = React.lazy(() => import('./components/Index/PageContainer'));
+const PageContainer = React.lazy(() => import('./components/Pages/PageContainer'));
 const SearchPage = React.lazy(() => import('./components/Header/Search/SearchPage'));
 const ArchiveContainer = React.lazy(() => import('./components/Archive/ArchiveContainer'));
 const MagazineContainer = React.lazy(() => import('./components/Magazine/MagazineContainer'));
 const NewNumberContainer = React.lazy(() => import('./components/Magazine/NewNumber/NewNumberContainer'));
 
 
-class App extends React.Component {
-    render() {
-        const domain = window.location.hostname;
-        this.props.setDomainName(domain);
+function App () {
+    let domain = window.location.hostname
+    const mainStyle = classNames({
+        'appWrapper': true,
+        'scientificSearch': domain === ('localhost'),
+        // 'scientificSearch': domain === ('https://scientific-search.kursksu.ru/'),
+        'tlIc': domain === ('https://tl-ic.kursksu.ru/'),
+        'scientificNotes': domain === ('http://scientific-notes.ru/'),
+        'ipp': domain === ('https://ipp.kursksu.ru/'),
+        'economPrav': domain === ('https://economprav.ru/'),
+        'auditorium': domain === ('https://auditorium.kursksu.ru/')
+    })
 
-        const mainStyle = classNames({
-            'appWrapper': true,
-            'scientificSearch': domain === ('localhost'),
-            // 'scientificSearch': domain === ('https://scientific-search.kursksu.ru/'),
-            'tlIc': domain === ('https://tl-ic.kursksu.ru/'),
-            'scientificNotes': domain === ('http://scientific-notes.ru/'),
-            'ipp': domain === ('https://ipp.kursksu.ru/'),
-            'economPrav': domain === ('https://economprav.ru/'),
-            'auditorium': domain === ('https://auditorium.kursksu.ru/')
-        })
-
-        return (
+    return (
+        <LanguageProvider>
             <div className={mainStyle}>
-                <Header domain={this.props.domain}/>
+                <Header/>
                 <div className="appWrapperContent">
-                    <Sidebar />
+                    <Sidebar/>
                     <div className="pageContent">
                         <Suspense fallback={<div>Загрузка данных...</div>}>
                             <Switch>
@@ -49,19 +45,10 @@ class App extends React.Component {
                         </Suspense>
                     </div>
                 </div>
-
                 <FooterContainer/>
             </div>
-        );
-    }
+        </LanguageProvider>
+    );
 }
 
-let mapStateToProps = (state) => {
-    return {
-        domain: state.app.domain
-    }
-}
-
-export default compose(
-    connect(mapStateToProps, {setDomainName})
-)(App);
+export default App;

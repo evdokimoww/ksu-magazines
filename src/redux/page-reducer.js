@@ -48,6 +48,7 @@ export const getPageData = (page) => async (dispatch) => {
 
     let response = await pageAPI.getData(page);
     let {name, content_rus, content_en} = response.data.page[0];
+
     dispatch(toggleIsFetching(false));
     dispatch(setPageData(name, content_rus, content_en));
 }

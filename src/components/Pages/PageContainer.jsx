@@ -9,7 +9,7 @@ import Preloader from "../../common/Preloader/Preloader";
 class PageContainer extends React.Component{
     refreshPage() {
         let page = this.props.match.params.pageName;
-        if (page != 'search-page'){
+        if (page !== 'search-page'){
             this.props.getPageData(page);
         }
     }
@@ -31,6 +31,7 @@ class PageContainer extends React.Component{
             return <Page {...this.props}
                   name={this.props.name}
                   content_rus={this.props.content_rus}
+                  content_en={this.props.content_en}
             />
         }
     }

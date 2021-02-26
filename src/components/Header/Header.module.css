@@ -27,6 +27,7 @@
     position: absolute;
     top: 50%;
     margin-top: -1em;
+    right: 11%;
 }
 
 .search input{
@@ -48,4 +49,20 @@
 
 .mainTitle{
     color: white;
+}
+
+.language{
+    padding: 0 20px;
+    grid-area: lang;
+    position: relative;
+}
+
+.langButtons{
+    position: absolute;
+    top: 50%;
+    margin-top: -1.5em;
+}
+
+.langButtons button:last-child{
+    margin-left: 10px;
 }

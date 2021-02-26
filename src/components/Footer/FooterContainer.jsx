@@ -1,5 +1,4 @@
 import React from 'react'
-import s from './Footer.module.css'
 import {compose} from "redux";
 import {withRouter} from "react-router-dom";
 import {connect} from "react-redux";

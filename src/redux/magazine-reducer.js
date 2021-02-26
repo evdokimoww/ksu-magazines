@@ -58,10 +58,10 @@ export const requestArchive = () => async (dispatch) => {
 }
 
 const requestNumberData = (response, dispatch) => {
-    let description = response.data[0].description;
-    dispatch(setNumberDescription(description));
+    let description = response.data[0].description
+    dispatch(setNumberDescription(description))
     let sciences = response.data[1]
-    dispatch(setNumberSciences(sciences));
+    dispatch(setNumberSciences(sciences))
 }
 
 export const requestNumber = (numberId) => async (dispatch) => {
