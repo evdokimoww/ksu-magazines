@@ -1,17 +1,16 @@
 import React from "react";
 import Page from "./Page";
 import {connect} from "react-redux";
-import {getPageData} from "../../redux/page-reducer";
+import {getPageData, setErrorPageData} from "../../redux/page-reducer";
 import {compose} from "redux";
-import {withRouter} from "react-router";
+import {withRouter, Redirect} from "react-router";
 import Preloader from "../../common/Preloader/Preloader";
 
 class PageContainer extends React.Component{
+
     refreshPage() {
-        let page = this.props.match.params.pageName;
-        if (page !== 'search-page'){
-            this.props.getPageData(page);
-        }
+        let page = this.props.match.params.pageName
+        this.props.getPageData(page)
     }
 
     componentDidMount() {
@@ -25,16 +24,16 @@ class PageContainer extends React.Component{
     }
 
     render() {
-        if (this.props.isFetching) {
-            return <Preloader />
-        } else {
-            return <Page {...this.props}
-                  name={this.props.name}
-                  content_rus={this.props.content_rus}
-                  content_en={this.props.content_en}
-            />
+        if (this.props.isFetching) { return <Preloader /> }
+        if (this.props.errorData) { return <Redirect to="/404" /> }
+
+        return <Page
+                    {...this.props}
+                    name={this.props.name}
+                    content_rus={this.props.content_rus}
+                    content_en={this.props.content_en}
+                />
         }
-    }
 }
 
 let mapStateToProps = (state) => {
@@ -42,11 +41,12 @@ let mapStateToProps = (state) => {
         name: state.page.name,
         content_rus: state.page.content_rus,
         content_en: state.page.content_en,
-        isFetching: state.page.isFetching
+        isFetching: state.page.isFetching,
+        errorData: state.page.errorData
     }
 }
 
 export default compose(
-    connect(mapStateToProps, {getPageData}),
+    connect(mapStateToProps, {getPageData, setErrorPageData}),
     withRouter
 )(PageContainer);

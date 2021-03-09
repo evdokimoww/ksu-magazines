@@ -2,12 +2,14 @@ import React from "react";
 import {connect} from "react-redux";
 import {requestNumber} from "../../redux/magazine-reducer";
 import {compose} from "redux";
-import {withRouter} from "react-router";
+import {withRouter, Redirect} from "react-router";
 import Magazine from "./Magazine";
+import Preloader from "../../common/Preloader/Preloader";
 
 class MagazineContainer extends React.Component {
     refreshNumber() {
         let numberId = this.props.match.params.numberId;
+        debugger
         this.props.requestNumber(numberId);
     }
 
@@ -22,6 +24,9 @@ class MagazineContainer extends React.Component {
     }
 
     render() {
+        if (this.props.isFetching) { return <Preloader /> }
+        if (this.props.errorData) { return <Redirect to="/404" /> }
+
         return <Magazine sciences={this.props.sciences}
                          description={this.props.description}/>
     }
@@ -30,7 +35,8 @@ class MagazineContainer extends React.Component {
 let mapStateToProps = (state) => {
     return{
         sciences: state.magazinePage.sciences,
-        description: state.magazinePage.description
+        description: state.magazinePage.description,
+        errorData: state.magazinePage.errorData
     }
 }
 

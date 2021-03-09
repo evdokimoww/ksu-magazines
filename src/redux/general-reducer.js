@@ -4,15 +4,13 @@ import {reset} from 'redux-form';
 const SET_TOTAL_STATISTIC = 'general/SET_TOTAL_STATISTIC'
 const SET_MOST_VIEWED_ARTICLES = 'general/SET_MOST_VIEWED_ARTICLES'
 const SET_SEARCH_RESULT = 'general/SET_SEARCH_RESULT'
-const SET_DOMAIN_NAME = 'general/SET_DOMAIN_NAME'
 
 let initialState = {
     allArticles: null,
     allNumbers: null,
     averageArticles: null,
     mostViewedArticles: [],
-    searchResult: [],
-    domain: null
+    searchResult: []
 };
 
 const generalReducer = (state = initialState, action) => {
@@ -33,12 +31,6 @@ const generalReducer = (state = initialState, action) => {
             return {
                 ...state,
                 searchResult: action.payload
-            }
-        }
-        case SET_DOMAIN_NAME: {
-            return {
-                ...state,
-                domain: action.payload
             }
         }
         default:
@@ -63,11 +55,6 @@ export const setSearchResults = (searchResult) => ({
     payload: searchResult
 })
 
-export const setDomainName = (domain) => ({
-    type: SET_DOMAIN_NAME,
-    payload: domain
-})
-
 export const getTotalStatistic = () => async (dispatch) => {
     let response = await generalAPI.getTotalStatistic();
     let {all_articles, all_numbers, average_articles} = response.data;
@@ -81,7 +68,6 @@ export const getMostViewedArticles = () => async (dispatch) => {
 
 export const searchFlow = (value) => async (dispatch) => {
     let response = await searchAPI.searchAuthor(value);
-    debugger
     if (response.data.result) {
         dispatch(setSearchResults(response.data.result));
         dispatch(reset('search'))

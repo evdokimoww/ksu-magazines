@@ -11,8 +11,8 @@ export const pageAPI = {
 }
 
 export const magazineAPI = {
-    getArchive() {
-        return instance.get('/api/v1/archive/')
+    getArchive(page) {
+        return instance.get('/api/v1/archive/' + page)
     },
     getNumber(numberId) {
         return instance.get(`/api/v1/number/?id=` + numberId)
@@ -33,7 +33,6 @@ export const generalAPI = {
 
 export const searchAPI = {
     searchAuthor(value) {
-        debugger
         return instance.post('/api/v1/search/', value, {
             headers: {
                 'Content-Type': 'multipart/form-data'

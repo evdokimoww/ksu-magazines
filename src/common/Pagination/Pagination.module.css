@@ -1,0 +1,19 @@
+.paginationLink{
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+    display: block;
+    border: 1px solid rgba(var(--primary-color), 0.3);
+    margin-left: 6px;
+}
+
+.paginationLink:first-child{
+    margin-left: 0px;
+}
+
+.paginationLink:hover,
+.paginationLinkActive {
+    color: white;
+    background-color: rgba(var(--primary-color), 0.6);
+}

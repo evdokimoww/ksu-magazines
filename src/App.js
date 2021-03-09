@@ -6,6 +6,7 @@ import FooterContainer from "./components/Footer/FooterContainer";
 import Sidebar from "./components/Sidebar/Sidebar";
 import classNames from "classnames"
 import {LanguageProvider} from "./components/Language/LanguageContext";
+import NotFoundPage from "./components/Pages/NotFoundPage";
 
 const PageContainer = React.lazy(() => import('./components/Pages/PageContainer'));
 const SearchPage = React.lazy(() => import('./components/Header/Search/SearchPage'));
@@ -21,7 +22,7 @@ function App () {
         'scientificSearch': domain === ('localhost'),
         // 'scientificSearch': domain === ('https://scientific-search.kursksu.ru/'),
         'tlIc': domain === ('https://tl-ic.kursksu.ru/'),
-        'scientificNotes': domain === ('http://scientific-notes.ru/'),
+        'scientificNotes': domain === ('https://scientific-notes.ru/'),
         'ipp': domain === ('https://ipp.kursksu.ru/'),
         'economPrav': domain === ('https://economprav.ru/'),
         'auditorium': domain === ('https://auditorium.kursksu.ru/')
@@ -32,14 +33,15 @@ function App () {
             <div className={mainStyle}>
                 <Header/>
                 <div className="appWrapperContent">
-                    <Sidebar/>
+                    <Sidebar domain={domain}/>
                     <div className="pageContent">
                         <Suspense fallback={<div>Загрузка данных...</div>}>
                             <Switch>
                                 <Route path='/search-results' render={() => <SearchPage/>}/>
-                                <Route exact path='/magazine/archive' render={() => <ArchiveContainer/>}/>
-                                <Route path='/magazine/archive/:numberId' render={() => <MagazineContainer/>}/>
+                                <Route path='/magazine/archive/:page' render={() => <ArchiveContainer/>}/>
+                                <Route path='/magazine/:numberId' render={() => <MagazineContainer/>}/>
                                 <Route path='/magazine/new-number' render={() => <NewNumberContainer/>}/>
+                                <Route path='/404' render={() => <NotFoundPage />}/>
                                 <Route path='/:pageName' render={() => <PageContainer/>}/>
                             </Switch>
                         </Suspense>
