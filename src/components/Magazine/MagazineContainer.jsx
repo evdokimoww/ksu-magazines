@@ -9,7 +9,6 @@ import Preloader from "../../common/Preloader/Preloader";
 class MagazineContainer extends React.Component {
     refreshNumber() {
         let numberId = this.props.match.params.numberId;
-        debugger
         this.props.requestNumber(numberId);
     }
 
